@@ -1,5 +1,10 @@
 # 美团每天赚
 
+## 安装
+```shell
+composer require msmm/mtmtz
+```
+
 ## 使用
 
 ```
