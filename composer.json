@@ -1,7 +1,7 @@
 {
     "name": "msmm/mtmtz",
     "type": "library",
-    "description": "",
+    "description": "美团 每天赚 基础封装",
     "autoload": {
         "psr-4": {
             "Msmm\\MtMtz\\": "src/"
