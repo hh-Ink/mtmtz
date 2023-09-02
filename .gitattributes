@@ -1,0 +1,7 @@
+/tests export-ignore
+/.gitignore export-ignore
+/.gitlab-ci.yml export-ignore
+/phpunit.xml export-ignore
+/.gitattributes export-ignore
+/.env export-ignore
+/.git export-ignore
