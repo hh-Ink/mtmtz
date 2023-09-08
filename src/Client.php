@@ -1,6 +1,4 @@
 <?php
-
-declare(strict_types=1);
 /**
  * This file is part of msmm.
  */
@@ -8,7 +6,7 @@ declare(strict_types=1);
 namespace Msmm\MtMtz;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
-use Msmm\Mtmtz\Contract\RequestInterface;
+use Msmm\MtMtz\Contract\RequestInterface;
 use Msmm\MtMtz\Utils\SignUtil;
 
 /**
