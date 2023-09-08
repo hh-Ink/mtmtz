@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Msmm\MtMtz\Requests;
 
-use Msmm\Mtmtz\Contract\RequestInterface;
+use Msmm\MtMtz\Contract\RequestInterface;
 use Msmm\MtMtz\Utils\Json;
 
 /**
