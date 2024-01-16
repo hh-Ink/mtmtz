@@ -16,38 +16,82 @@ use Msmm\MtMtz\Utils\Json;
  */
 class ApiQueryOrderRequest implements RequestInterface
 {
-    private $actId; //	Long	非必填	活动物料id，我要推广-活动推广中第一列的id信息，不传则返回所有actId的数据，但是不会标记对应的actid，建议查询订单时传入actId
+    /**
+     * 二级推广位id，最长64位，不传则返回所有sid的数据
+     * 是否必须：否
+     * @var string
+     */
+    private $sid;
 
-    private $sid;   //	String	非必填	二级推广位id，最长64位，不传则返回所有sid的数据
+    /**
+     * 当platform选择到家及其他业务类型时，业务线枚举 1：外卖订单 WAIMAI 2：闪购 3：酒旅 4：美团电商订单（团好货） 5：医药 6：拼好饭 7：商品超值券包 COUPON 8：买菜 MAICAI 不传则默认传空表示非售卖券包订单类型的全部查询。若输入参数含7 商品超值券包，则只返回商品超值券包订单
 
-    private $businessLine;  //	List<Integer>	非必填	业务线列表：1：外卖订单 WAIMAI， 2：闪购， 3：酒旅， 4：美团电商订单（团好货）， 5：医药 6：拼好饭， 7：商品超值券包 COUPON， 8：买菜 MAICAI， 不传则默认传空表示非售卖券包订单类型的全部查询； 一期仅支持返回外卖和商品超值券包的订单
+    2）当platform选择到店业务类型 时，业务线枚举1:到餐 2: 到综，不填则默认传1
+     * 是否必须：否
+     * @var array
+     */
+    private $businessLine;
 
-    private $orderId;   //	String	非必填	订单id，入参后其他条件不生效，本期只能查非商品券类型的订单
+    /**
+     * 订单id，入参后可与业务线标识businessLine配合使用，如查询商品超值券包订单时orderId传券包订单号，businessLine传7； 除此以外其他查询筛选条件不生效，不传业务线标识businessLine则默认仅查非券包订单
+     * 是否必须：否
+     * @var string
+     */
+    private $orderId;
 
-    private $startTime; //	Integer	非必填	查询时间类型对应的查询开始时间，10位时间戳表示
+    /**
+     * 查询时间类型对应的查询开始时间，10位时间戳表示
+     * 是否必须：否
+     * @var int
+     */
+    private $startTime;
 
-    private $endTime;   //	Integer	非必填	查询时间类型对应的查询结束时间，10位时间戳表示
+    /**
+     * 查询时间类型对应的查询结束时间，10位时间戳表示
+     * 是否必须：否
+     * @var int
+     */
+    private $endTime;
 
-    private $page;  //	Integer	非必填	页码，默认1，从1开始
+    /**
+     * 页码，默认1，从1开始
+     * 是否必须：否
+     * @var int
+     */
+    private $page;
 
-    private $limit; //	Integer	非必填	每页限制条数，默认20，最大支持20
+    /**
+     * 每页限制条数，默认20，最大支持20
+     * 是否必须：否
+     * @var int
+     */
+    private $limit;
 
-    private $queryTimeType; //	Integer	非必填	查询时间类型，枚举值， 1 按订单支付时间查询， 2 按照更新时间查询， 默认为1
+    /**
+     * 查询时间类型，枚举值， 1 按订单支付时间查询， 2 按照更新时间查询， 默认为1
+     * 是否必须：否
+     * @var int
+     */
+    private $queryTimeType;
 
-    private $scrollId; //	String	非必填	分页id（暂未使用，预留）
+    /**
+     * 交易类型，1表示CPS，2表示CPA
+     * 是否必须：否
+     * @var int
+     */
+    private $scrollId;
+
+    /**
+     * 商品所属业务一级分类类型：1 到家及其他业务类型，2 到店业务类型 不填则默认1
+     * 是否必须：否
+     * @var int
+     */
+    private $platform;
 
     /**
      * 请求参数.
      */
     private $apiParams = [];
-
-    /**
-     * @return mixed
-     */
-    public function getActId()
-    {
-        return $this->actId;
-    }
 
     /**
      * @return mixed
@@ -122,12 +166,20 @@ class ApiQueryOrderRequest implements RequestInterface
     }
 
     /**
-     * @param mixed $actId
+     * @return int
      */
-    public function setActId($actId)
+    public function getPlatform()
     {
-        $this->actId = $actId;
-        $this->apiParams['actId'] = $actId;
+        return $this->platform;
+    }
+
+    /**
+     * @param int $platform
+     */
+    public function setPlatform($platform)
+    {
+        $this->platform = $platform;
+        $this->apiParams['platform'] = $platform;
     }
 
     /**

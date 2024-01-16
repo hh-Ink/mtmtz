@@ -17,25 +17,115 @@ use Msmm\MtMtz\Utils\Json;
  */
 class ApiQueryCouponRequest implements RequestInterface
 {
+    /**
+     * 定位经纬度的经度，请传递经度*100万倍的整形数字，如经度116.404*100万倍为116404000
+     * 是否必须：否
+     * @var int
+     */
     private $longitude;
 
+    /**
+     * 定位经纬度的纬度，请传递纬度*100万倍的整形数字，如纬度39.928*100万倍为39928000
+     * 是否必须：否
+     * @var int
+     */
     private $latitude;
 
+    /**
+     * 筛选商品售卖价格上限
+     * 是否必须：否
+     * @var int
+     */
     private $priceCap;
 
+    /**
+     * 筛选商品价格下限
+     * 是否必须：否
+     * @var int
+     */
     private $priceFloor;
 
+    /**
+     * 商品券ID集合，非必填，若填写该字段则不支持其他筛选条件，集合里ID用英文,隔开。一次最多支持查询20个售卖券ID
+     * 是否必须：否
+     * @var string
+     */
     private $vpSkuViewIds;
 
+    /**
+     * 选品池榜单主题ID，支持查询1:精选，2:今日必推、3:同城热销、4:跟推爆款的商品售卖券
+     * 到店业务类型，本项为必填，且只支持传枚举3
+     * 是否必须：否
+     * @var int
+     */
     private $listTopiId;
 
+    /**
+     * 分页大小，不填返回默认分页20
+     * 是否必须：否
+     * @var int
+     */
     private $pageSize;
 
+    /**
+     * 页数，不填返回默认页数1
+     * 是否必须：否
+     * @var int
+     */
     private $pageNo;
 
+    /**
+     * 1）未入参榜单listTopicId时：支持1 售价排序、2 销量排序
+
+    2）入参榜单listTopicId时：
+
+    到家业务类型：支持1 售价排序，2 销量降序 3佣金降序；
+
+    到店业务类型：支持1 销量降序 2佣金降序；
+
+    其他说明：不填则默认为1
+     * 是否必须：否
+     * @var int
+     */
     private $sortField;
 
-    private $ascDescOrder;
+    /**
+     * 筛选商品佣金值上限
+
+    若商品按照佣金值进行范围筛选，则排序只能按照佣金降序
+
+    本字段只支持到店业务类型
+     * 是否必须：否
+     * @var int
+     */
+    private $commissionCap;
+
+    /**
+     * 筛选商品佣金值下限
+
+    若商品按照佣金值进行范围筛选，则排序只能按照佣金降序
+
+    本字段只支持到店业务类型
+     * 是否必须：否
+     * @var int
+     */
+    private $commissionFloor;
+
+    /**
+     * 商品所属业务一级分类类型：1 到家业务类型，2 到店业务类型 不填则默认1
+     * 是否必须：是
+     * @var int
+     */
+    private $platform;
+
+    /**
+     * 当选择到家业务类型时：1 外卖 不填则默认1
+
+    当选择到店业务类型时，商品所属业务二级分类类型：1 到餐，2 到综，不填则默认1
+     * 是否必须：否
+     * @var int
+     */
+    private $bizLine;
 
     /**
      * 请求参数.
@@ -196,20 +286,71 @@ class ApiQueryCouponRequest implements RequestInterface
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getAscDescOrder()
+    public function getCommissionCap()
     {
-        return $this->ascDescOrder;
+        return $this->commissionCap;
     }
 
     /**
-     * @param mixed $ascDescOrder
+     * @param int $commissionCap
      */
-    public function setAscDescOrder($ascDescOrder)
+    public function setCommissionCap($commissionCap)
     {
-        $this->ascDescOrder = $ascDescOrder;
-        $this->apiParams['ascDescOrder'] = $ascDescOrder;
+        $this->commissionCap = $commissionCap;
+        $this->apiParams['commissionCap'] = $commissionCap;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCommissionFloor()
+    {
+        return $this->commissionFloor;
+    }
+
+    /**
+     * @param int $commissionFloor
+     */
+    public function setCommissionFloor($commissionFloor)
+    {
+        $this->commissionFloor = $commissionFloor;
+        $this->apiParams['commissionFloor'] = $commissionFloor;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlatform()
+    {
+        return $this->platform;
+    }
+
+    /**
+     * @param int $platform
+     */
+    public function setPlatform($platform)
+    {
+        $this->platform = $platform;
+        $this->apiParams['platform'] = $platform;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBizLine()
+    {
+        return $this->bizLine;
+    }
+
+    /**
+     * @param int $bizLine
+     */
+    public function setBizLine($bizLine)
+    {
+        $this->bizLine = $bizLine;
+        $this->apiParams['bizLine'] = $bizLine;
     }
 
     public function getApiParams(): array
