@@ -33,8 +33,8 @@ class SignUtil
             self::contentMD5($config) . "\n" .
             self::headers($signHeaders) .
             self::url($config);
-        $key = utf8_encode($config['secret'] ?? '');
-        $message = utf8_encode($strSign);
+        $key = $config['secret'] ?? '';
+        $message = $strSign;
         $hash = hash_hmac('sha256', $message, $key, true);
         return base64_encode($hash);
     }
@@ -47,7 +47,7 @@ class SignUtil
     public static function contentMD5($config): string
     {
         if ($config['method'] === 'POST' && isset($config['data'])) {
-            $bodyData = $config['data'] ? utf8_encode(json_encode($config['data'])) : utf8_encode('{}');
+            $bodyData = $config['data'] ? json_encode($config['data']) : '{}';
             return base64_encode(md5($bodyData, true));
         }
         return '';

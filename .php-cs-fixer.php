@@ -80,6 +80,10 @@ return (new PhpCsFixer\Config())
         'standardize_not_equals' => true,
         'multiline_comment_opening_closing' => true,
         'phpdoc_add_missing_param_annotation' => true,
+        'no_blank_lines_before_namespace' => true,
+        'blank_lines_before_namespace' => false,
+        'single_line_empty_body' => false,
+        'ordered_types' => false,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

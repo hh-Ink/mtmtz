@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * This file is part of msmm.
  */
@@ -58,7 +60,7 @@ class Client
         $client = new GuzzleHttpClient();
         $response = $client->post($url, [
             'headers' => $header,
-            'body' => $postFields ? utf8_encode(json_encode($postFields)) : utf8_encode('{}'),
+            'body' => $postFields ? json_encode($postFields) : '{}',
         ]);
         return $response->getBody()->getContents();
     }
