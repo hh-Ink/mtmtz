@@ -128,6 +128,13 @@ class ApiQueryCouponRequest implements RequestInterface
     private $bizLine;
 
     /**
+     * 仅对到家业务类型生效，未入参榜单listTopicId时：1 升序，2 降序； 入参榜单listTopicId时：1 升序，2 降序，并且仅对sortField为1售价排序的时候生效，其他筛选值不生效； 其他说明：不填则默认为1升序
+     * 是否必须：否.
+     * @var int
+     */
+    private $ascDescOrder;
+
+    /**
      * 请求参数.
      */
     private $apiParams = [];
@@ -351,6 +358,23 @@ class ApiQueryCouponRequest implements RequestInterface
     {
         $this->bizLine = $bizLine;
         $this->apiParams['bizLine'] = $bizLine;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAscDescOrder(): int
+    {
+        return $this->ascDescOrder;
+    }
+
+    /**
+     * @param int $ascDescOrder
+     */
+    public function setAscDescOrder(int $ascDescOrder)
+    {
+        $this->ascDescOrder = $ascDescOrder;
+        $this->apiParams['ascDescOrder'] = $ascDescOrder;
     }
 
     public function getApiParams(): array
