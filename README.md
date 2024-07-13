@@ -46,3 +46,10 @@ class ToolMtMTZ
     }
 }
 ```
+
+## 扩展
+> 本库只实现了美团美天赚的自用接口，如果需要扩展，请参考以下步骤
+
+1. 添加新的接口请求类，继承`Msmm\MtMtz\Requests\AbstractRequest`抽象类
+2. 实现 `getApiMethodName` `getApiParams` 方法，如果返回值有要求重写 `Msmm\MtMtz\Requests\AbstractRequest`抽象类的 `getResult` 方法即可
+3. 具体实现请参考 `Msmm\MtMtz\Requests\ApiQueryOrderRequest` 类

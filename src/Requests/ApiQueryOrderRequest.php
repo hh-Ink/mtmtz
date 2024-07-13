@@ -7,14 +7,11 @@ declare(strict_types=1);
 
 namespace Msmm\MtMtz\Requests;
 
-use Msmm\MtMtz\Contract\RequestInterface;
-use Msmm\MtMtz\Utils\Json;
-
 /**
  * API 名称：查询订单
  * API 描述：查询推广的订单明细及佣金信息，一期包括外卖、商品超值券售卖的订单。支持按付款时间或更新时间查询，查询近3个月的订单明细。支持POST方法查询接口。只接受JSON格式。
  */
-class ApiQueryOrderRequest implements RequestInterface
+class ApiQueryOrderRequest extends AbstractRequest
 {
     /**
      * 二级推广位id，最长64位，不传则返回所有sid的数据
@@ -271,19 +268,5 @@ class ApiQueryOrderRequest implements RequestInterface
     public function getApiMethodName(): string
     {
         return 'https://media.meituan.com/cps_open/common/api/v1/query_order';
-    }
-
-    /**
-     * 解析结果.
-     * @param mixed $response
-     * @throws \Exception
-     */
-    public function getResult($response): array
-    {
-        $result = Json::decode($response);
-        if ($result['code'] !== 0) {
-            throw new \Exception($result['message'] ?? '', 301);
-        }
-        return $result;
     }
 }

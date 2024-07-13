@@ -7,15 +7,12 @@ declare(strict_types=1);
 
 namespace Msmm\MtMtz\Requests;
 
-use Msmm\MtMtz\Contract\RequestInterface;
-use Msmm\MtMtz\Utils\Json;
-
 /**
  * 团购API-获取某个城市的一级类目包含的二级类目信息
  * https://union.dianping.com/api/city/{cityId}/categories
  * Date: 2021-03-31.
  */
-class ApiQueryCouponRequest implements RequestInterface
+class ApiQueryCouponRequest extends AbstractRequest
 {
     /**
      * 定位经纬度的经度，请传递经度*100万倍的整形数字，如经度116.404*100万倍为116404000
@@ -385,20 +382,5 @@ class ApiQueryCouponRequest implements RequestInterface
     public function getApiMethodName(): string
     {
         return 'https://media.meituan.com/cps_open/common/api/v1/query_coupon';
-    }
-
-    /**
-     * 解析结果.
-     * @param mixed $response
-     * @return mixed
-     * @throws \Exception
-     */
-    public function getResult($response)
-    {
-        $result = Json::decode($response);
-        if ($result['code'] !== 0) {
-            throw new \Exception($result['message'] ?? '', 301);
-        }
-        return $result['data'];
     }
 }

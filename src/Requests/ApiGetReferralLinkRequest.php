@@ -7,10 +7,7 @@ declare(strict_types=1);
 
 namespace Msmm\MtMtz\Requests;
 
-use Msmm\MtMtz\Contract\RequestInterface;
-use Msmm\MtMtz\Utils\Json;
-
-class ApiGetReferralLinkRequest implements RequestInterface
+class ApiGetReferralLinkRequest extends AbstractRequest
 {
     /**
      * ID，我要推广-活动推广中第一列的id信息（和商品id、活动链接三选一填写，不能全填）
@@ -171,20 +168,5 @@ class ApiGetReferralLinkRequest implements RequestInterface
     public function getApiMethodName(): string
     {
         return 'https://media.meituan.com/cps_open/common/api/v1/get_referral_link';
-    }
-
-    /**
-     * 解析结果.
-     * @param mixed $response
-     * @return mixed
-     * @throws \Exception
-     */
-    public function getResult($response)
-    {
-        $result = Json::decode($response);
-        if ($result['code'] !== 0) {
-            throw new \Exception($result['message'] ?? '', 301);
-        }
-        return $result['data'];
     }
 }

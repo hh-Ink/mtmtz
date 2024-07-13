@@ -9,7 +9,7 @@ namespace Msmm\MtMtz\Utils;
 
 use Msmm\MtMtz\Exception\JsonInvalidArgumentException;
 
-class Json
+class MtUtilJson
 {
     /**
      * @param mixed $data

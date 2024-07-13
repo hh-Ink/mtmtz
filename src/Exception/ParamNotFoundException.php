@@ -7,6 +7,6 @@ declare(strict_types=1);
 
 namespace Msmm\MtMtz\Exception;
 
-class ParamNotFoundException extends \InvalidArgumentException
+class ParamNotFoundException extends \Exception
 {
 }

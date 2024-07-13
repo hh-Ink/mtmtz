@@ -7,6 +7,6 @@ declare(strict_types=1);
 
 namespace Msmm\MtMtz\Exception;
 
-class JsonInvalidArgumentException extends \Exception
+class ResultErrorException extends \Exception
 {
 }
