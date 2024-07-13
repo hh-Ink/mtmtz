@@ -49,28 +49,28 @@ class Client
     /**
      * 执行请求，发送到美团接口。
      *
-     * @param requestInterface $req 具有请求信息的接口对象
+     * @param requestInterface $request 具有请求信息的接口对象
      * @return mixed 返回处理后的结果
      */
-    public function execute(RequestInterface $req)
+    public function execute(RequestInterface $request)
     {
-        $url = $req->getApiMethodName();
-        $data_string = $req->getApiParams();
+        $url = $request->getApiMethodName();
+        $dataString = $request->getApiParams();
 
         $config = [
             'app_key' => $this->appKey,
             'secret' => $this->secret,
             'method' => 'POST',
             'url' => $url,
-            'data' => $data_string,
+            'data' => $dataString,
         ];
 
         // 生成签名头信息
         $signHeaders = SignUtil::getSignHeaders($config);
         // 发送请求并获取结果
-        $result = $this->http($url, $signHeaders, $data_string);
+        $result = $this->http($url, $signHeaders, $dataString);
         // 解析并返回处理结果
-        return $req->getResult($result);
+        return $request->getResult($result);
     }
 
     /**
