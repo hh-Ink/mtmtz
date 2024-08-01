@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Msmm\MtMtz\Utils;
 
+use Msmm\MtMtz\Exception\JsonInvalidArgumentException;
+
 /**
  * SignUtil 类用于生成API请求的签名头。
  * 它提供了根据请求配置计算签名的方法，包括HTTP方法、内容MD5以及排序后的头信息。
@@ -54,8 +56,7 @@ class SignUtil
             self::headers($signHeaders) .
             self::url($config);
         $key = $config['secret'] ?? '';
-        $message = $strSign;
-        $hash = hash_hmac('sha256', $message, $key, true);
+        $hash = hash_hmac('sha256', $strSign, $key, true);
         return base64_encode($hash);
     }
 
@@ -78,8 +79,8 @@ class SignUtil
      */
     public static function contentMD5($config): string
     {
-        if ($config['method'] === 'POST' && isset($config['data'])) {
-            $bodyData = $config['data'] ? json_encode($config['data']) : '{}';
+        if (self::httpMethod($config) === 'POST' && isset($config['data'])) {
+            $bodyData = self::getBodyData($config);
             return base64_encode(md5($bodyData, true));
         }
         return '';
@@ -117,7 +118,7 @@ class SignUtil
         $reqData = $config['params'] ?? $config['data'] ?? [];
         $path = '/' . implode('/', array_slice(explode('/', $config['url']), 3));
 
-        if ($reqData && $config['method'] === 'GET') {
+        if ($reqData && self::httpMethod($config) === 'GET') {
             $sortObj = self::objSort($reqData);
             $query = http_build_query($sortObj);
             return $path . '?' . $query;
@@ -135,5 +136,15 @@ class SignUtil
     {
         ksort($data);
         return $data;
+    }
+
+    /**
+     * 获取body数据.
+     * @param mixed $config
+     * @throws JsonInvalidArgumentException
+     */
+    public static function getBodyData($config): string
+    {
+        return $config['data'] ? MtUtilJson::encode($config['data']) : '{}';
     }
 }

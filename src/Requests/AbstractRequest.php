@@ -22,8 +22,10 @@ abstract class AbstractRequest implements RequestInterface
     public function getResult($response)
     {
         $result = MtUtilJson::decode($response);
-        if ($result['code'] !== 0) {
-            throw new ResultErrorException($result['message'] ?? '', 301);
+        $code = $result['code'] ?? 301;
+        $code = $code == 200 ? 301 : $code;
+        if ($code !== 0) {
+            throw new ResultErrorException($result['message'] ?? '', $code);
         }
         return $result;
     }

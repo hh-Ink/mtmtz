@@ -8,14 +8,30 @@ declare(strict_types=1);
 namespace Msmm\MtMtz;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\MessageFormatter;
+use GuzzleHttp\Middleware;
 use Msmm\MtMtz\Contract\RequestInterface;
+use Msmm\MtMtz\Exception\JsonInvalidArgumentException;
 use Msmm\MtMtz\Utils\SignUtil;
+use Psr\Log\LoggerInterface;
 
 /**
  * 美团客户端类，用于发送请求到美团接口。
  */
 class Client
 {
+    /**
+     * 日志对象.
+     */
+    protected $logger;
+
+    /**
+     * 请求调试模式.
+     */
+    protected $debug = false;
+
     /**
      * 应用的密钥，用于签名。
      */
@@ -47,10 +63,30 @@ class Client
     }
 
     /**
+     * 设置日志.
+     * @param mixed $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
+     * 调试模式开关.
+     * @param mixed $debug
+     */
+    public function setDebug($debug)
+    {
+        $this->logger = $debug;
+    }
+
+    /**
      * 执行请求，发送到美团接口。
      *
-     * @param requestInterface $request 具有请求信息的接口对象
+     * @param RequestInterface $request 具有请求信息的接口对象
      * @return mixed 返回处理后的结果
+     * @throws GuzzleException
+     * @throws JsonInvalidArgumentException
      */
     public function execute(RequestInterface $request)
     {
@@ -65,28 +101,49 @@ class Client
             'data' => $dataString,
         ];
 
-        // 生成签名头信息
-        $signHeaders = SignUtil::getSignHeaders($config);
         // 发送请求并获取结果
-        $result = $this->http($url, $signHeaders, $dataString);
+        $result = $this->http($url, $config);
         // 解析并返回处理结果
         return $request->getResult($result);
+    }
+
+    protected function getStack(): HandlerStack
+    {
+        // 堆栈设置
+        $stack = (new HandlerStack())->create();
+        // 设置日志记录驱动
+        if ($this->logger instanceof LoggerInterface) {
+            $format = 'URL:{url}   BODY:{req_body} RESPONSE:{res_body}';
+            $stack->push(
+                Middleware::log(
+                    $this->logger,
+                    new MessageFormatter($format)
+                )
+            );
+        }
+        return $stack;
     }
 
     /**
      * 发送HTTP请求到指定URL。
      *
-     * @param string $url 请求的URL
-     * @param array $header 请求的头部信息
-     * @param null|string $postFields 请求的POST数据
+     * @param mixed $url 请求的URL
+     * @param mixed $config
      * @return string 返回请求的结果
+     * @throws JsonInvalidArgumentException
+     * @throws GuzzleException
      */
-    private function http($url, $header, $postFields = null): string
+    private function http($url, $config): string
     {
-        $client = new GuzzleHttpClient();
+        // 生成签名头信息
+        $signHeaders = SignUtil::getSignHeaders($config);
+        $client = new GuzzleHttpClient([
+            'handler' => $this->getStack(),
+            'debug' => $this->debug,
+        ]);
         $response = $client->post($url, [
-            'headers' => $header,
-            'body' => $postFields ? json_encode($postFields) : '{}',
+            'headers' => $signHeaders,
+            'body' => SignUtil::getBodyData($config),
         ]);
         return $response->getBody()->getContents();
     }

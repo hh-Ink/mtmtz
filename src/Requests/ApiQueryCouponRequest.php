@@ -357,17 +357,11 @@ class ApiQueryCouponRequest extends AbstractRequest
         $this->apiParams['bizLine'] = $bizLine;
     }
 
-    /**
-     * @return int
-     */
     public function getAscDescOrder(): int
     {
         return $this->ascDescOrder;
     }
 
-    /**
-     * @param int $ascDescOrder
-     */
     public function setAscDescOrder(int $ascDescOrder)
     {
         $this->ascDescOrder = $ascDescOrder;
