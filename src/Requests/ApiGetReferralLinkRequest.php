@@ -54,6 +54,11 @@ class ApiGetReferralLinkRequest extends AbstractRequest
     private $bizLine;
 
     /**
+     * 活动链接.
+     */
+    private $text;
+
+    /**
      * 请求参数.
      */
     private $apiParams = [];
@@ -158,6 +163,15 @@ class ApiGetReferralLinkRequest extends AbstractRequest
     {
         $this->bizLine = $bizLine;
         $this->apiParams['bizLine'] = $bizLine;
+    }
+
+    /**
+     * @param string $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+        $this->apiParams['text'] = $text;
     }
 
     public function getApiParams(): array
