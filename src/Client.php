@@ -145,6 +145,6 @@ class Client
             'headers' => $signHeaders,
             'body' => SignUtil::getBodyData($config),
         ]);
-        return $response->getBody()->getContents();
+        return $response->getBody()->__toString();
     }
 }
