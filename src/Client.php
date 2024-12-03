@@ -62,6 +62,6 @@ class Client
             'headers' => $header,
             'body' => $postFields ? json_encode($postFields) : '{}',
         ]);
-        return $response->getBody()->getContents();
+        return $response->getBody()->__toString();
     }
 }
