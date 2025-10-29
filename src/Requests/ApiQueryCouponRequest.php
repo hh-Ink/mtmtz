@@ -133,17 +133,40 @@ class ApiQueryCouponRequest extends AbstractRequest
 
     /**
      * 搜索关键字,限制1-100个字符,若想使用该字段进行搜索则不能填写vpSkuViewIds、listTopiId字段
-     * 是否必须：否
+     * 是否必须：否.
      * @var string
      */
     private $searchText;
 
     /**
      * 仅搜索场景使用，首次调用不填充，之后使用出参中的searchId发起后续检索请求，变更关键字或排序规则后重置为不填充！
-     * 是否必须：否
+     * 是否必须：否.
      * @var string
      */
     private $searchId;
+
+    /**
+     * 城市编码，榜单场景、多业务供给场景、搜索场景生效。
+     * 城市ID下载：https://s3plus.meituan.net/media-public/%E5%9F%8E%E5%B8%82%E5%AD%97%E5%85%B82025.xlsx
+     * 是否必须：否.
+     * @var string
+     */
+    private $cityId;
+
+    /**
+     * 商圈编码，榜单场景、多业务供给场景、搜索场景生效。
+     * 商圈下载：https://s3plus.meituan.net/media-public/%E5%95%86%E5%9C%88%E5%9F%8E%E5%B8%82%E6%98%A0%E5%B0%84%E5%AD%97%E5%85%B82025.xlsx
+     * 是否必须：否.
+     * @var string
+     */
+    private $businessAreaId;
+
+    /**
+     * 商品类别ID，用于按品类筛选商品，仅支持选品池榜单召回，目前只支持外卖商品.
+     * 是否必须：否.
+     * @var string
+     */
+    private $categoryId;
 
     /**
      * 请求参数.
@@ -382,38 +405,59 @@ class ApiQueryCouponRequest extends AbstractRequest
         $this->apiParams['ascDescOrder'] = $ascDescOrder;
     }
 
-    /**
-     * @return string
-     */
     public function getSearchText(): string
     {
         return $this->searchText;
     }
 
-    /**
-     * @param string $searchText
-     */
     public function setSearchText(string $searchText)
     {
         $this->searchText = $searchText;
         $this->apiParams['searchText'] = $searchText;
     }
 
-    /**
-     * @return string
-     */
     public function getSearchId(): string
     {
         return $this->searchId;
     }
 
-    /**
-     * @param string $searchId
-     */
     public function setSearchId(string $searchId)
     {
         $this->searchId = $searchId;
         $this->apiParams['searchId'] = $searchId;
+    }
+
+    public function setCityId($cityId)
+    {
+        $this->cityId = $cityId;
+        $this->apiParams['cityId'] = $cityId;
+    }
+
+    public function getCityId(): string
+    {
+        return $this->cityId;
+    }
+
+    public function setBusinessAreaId($businessAreaId)
+    {
+        $this->businessAreaId = $businessAreaId;
+        $this->apiParams['businessAreaId'] = $businessAreaId;
+    }
+
+    public function getBusinessAreaId(): string
+    {
+        return $this->businessAreaId;
+    }
+
+    public function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
+        $this->apiParams['categoryId'] = $categoryId;
+    }
+
+    public function getCategoryId(): string
+    {
+        return $this->categoryId;
     }
 
     public function getApiParams(): array
