@@ -51,10 +51,10 @@ class SignUtil
      */
     public static function sign($config, $signHeaders): string
     {
-        $strSign = self::httpMethod($config) . "\n" .
-            self::contentMD5($config) . "\n" .
-            self::headers($signHeaders) .
-            self::url($config);
+        $strSign = self::httpMethod($config) . "\n"
+            . self::contentMD5($config) . "\n"
+            . self::headers($signHeaders)
+            . self::url($config);
         $key = $config['secret'] ?? '';
         $hash = hash_hmac('sha256', $strSign, $key, true);
         return base64_encode($hash);

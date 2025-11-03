@@ -54,7 +54,18 @@ class ApiGetReferralLinkRequest extends AbstractRequest
     private $bizLine;
 
     /**
+     * 分享文案：支持媒体选择小红书 or 微信社群风格的分享文案 出参增加 shareText 字段
+     * 1 代表小红书风格文案
+     * 2 代表微信社群风格文案.
+     *
+     * 是否必须：否
+     * @var int
+     */
+    private $shareTextType;
+
+    /**
      * 活动链接.
+     * @var string
      */
     private $text;
 
@@ -165,6 +176,11 @@ class ApiGetReferralLinkRequest extends AbstractRequest
         $this->apiParams['bizLine'] = $bizLine;
     }
 
+    public function getText()
+    {
+        return $this->text;
+    }
+
     /**
      * @param string $text
      */
@@ -172,6 +188,17 @@ class ApiGetReferralLinkRequest extends AbstractRequest
     {
         $this->text = $text;
         $this->apiParams['text'] = $text;
+    }
+
+    public function getShareTextType()
+    {
+        return $this->shareTextType;
+    }
+
+    public function setShareTextType($shareTextType)
+    {
+        $this->shareTextType = $shareTextType;
+        $this->apiParams['shareTextType'] = $shareTextType;
     }
 
     public function getApiParams(): array
