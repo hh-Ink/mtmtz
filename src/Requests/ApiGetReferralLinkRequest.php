@@ -80,102 +80,66 @@ class ApiGetReferralLinkRequest extends AbstractRequest
      */
     private $apiParams = [];
 
-    /**
-     * @return mixed
-     */
     public function getActId()
     {
         return $this->actId;
     }
 
-    /**
-     * @param mixed $actId
-     */
     public function setActId($actId)
     {
         $this->actId = $actId;
         $this->apiParams['actId'] = $actId;
     }
 
-    /**
-     * @return mixed
-     */
     public function getSkuViewId()
     {
         return $this->skuViewId;
     }
 
-    /**
-     * @param mixed $skuViewId
-     */
     public function setSkuViewId($skuViewId)
     {
         $this->skuViewId = $skuViewId;
         $this->apiParams['skuViewId'] = $skuViewId;
     }
 
-    /**
-     * @return mixed
-     */
     public function getSid()
     {
         return $this->sid;
     }
 
-    /**
-     * @param mixed $sid
-     */
     public function setSid($sid)
     {
         $this->sid = $sid;
         $this->apiParams['sid'] = $sid;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLinkType()
     {
         return $this->linkType;
     }
 
-    /**
-     * @param mixed $linkType
-     */
     public function setLinkType($linkType)
     {
         $this->linkType = $linkType;
         $this->apiParams['linkType'] = $linkType;
     }
 
-    /**
-     * @return int
-     */
     public function getPlatform()
     {
         return $this->platform;
     }
 
-    /**
-     * @param int $platform
-     */
     public function setPlatform($platform)
     {
         $this->platform = $platform;
         $this->apiParams['platform'] = $platform;
     }
 
-    /**
-     * @return int
-     */
     public function getBizLine()
     {
         return $this->bizLine;
     }
 
-    /**
-     * @param int $bizLine
-     */
     public function setBizLine($bizLine)
     {
         $this->bizLine = $bizLine;
@@ -187,9 +151,6 @@ class ApiGetReferralLinkRequest extends AbstractRequest
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     */
     public function setText($text)
     {
         $this->text = $text;

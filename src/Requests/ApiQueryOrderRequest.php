@@ -90,73 +90,46 @@ class ApiQueryOrderRequest extends AbstractRequest
      */
     private $apiParams = [];
 
-    /**
-     * @return mixed
-     */
     public function getSid()
     {
         return $this->sid;
     }
 
-    /**
-     * @return mixed
-     */
     public function getBusinessLine()
     {
         return $this->businessLine;
     }
 
-    /**
-     * @return mixed
-     */
     public function getOrderId()
     {
         return $this->orderId;
     }
 
-    /**
-     * @return mixed
-     */
     public function getStartTime()
     {
         return $this->startTime;
     }
 
-    /**
-     * @return mixed
-     */
     public function getEndTime()
     {
         return $this->endTime;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPage()
     {
         return $this->page;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLimit()
     {
         return $this->limit;
     }
 
-    /**
-     * @return mixed
-     */
     public function getQueryTimeType()
     {
         return $this->queryTimeType;
     }
 
-    /**
-     * @return mixed
-     */
     public function getScrollId()
     {
         return $this->scrollId;
@@ -170,90 +143,60 @@ class ApiQueryOrderRequest extends AbstractRequest
         return $this->platform;
     }
 
-    /**
-     * @param int $platform
-     */
     public function setPlatform($platform)
     {
         $this->platform = $platform;
         $this->apiParams['platform'] = $platform;
     }
 
-    /**
-     * @param mixed $sid
-     */
     public function setSid($sid)
     {
         $this->sid = $sid;
         $this->apiParams['sid'] = $sid;
     }
 
-    /**
-     * @param mixed $businessLine
-     */
     public function setBusinessLine($businessLine)
     {
         $this->businessLine = $businessLine;
         $this->apiParams['businessLine'] = $businessLine;
     }
 
-    /**
-     * @param mixed $orderId
-     */
     public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
         $this->apiParams['orderId'] = $orderId;
     }
 
-    /**
-     * @param mixed $startTime
-     */
     public function setStartTime($startTime)
     {
         $this->startTime = $startTime;
         $this->apiParams['startTime'] = $startTime;
     }
 
-    /**
-     * @param mixed $endTime
-     */
     public function setEndTime($endTime)
     {
         $this->endTime = $endTime;
         $this->apiParams['endTime'] = $endTime;
     }
 
-    /**
-     * @param mixed $page
-     */
     public function setPage($page)
     {
         $this->page = $page;
         $this->apiParams['page'] = $page;
     }
 
-    /**
-     * @param mixed $limit
-     */
     public function setLimit($limit)
     {
         $this->limit = $limit;
         $this->apiParams['limit'] = $limit;
     }
 
-    /**
-     * @param mixed $queryTimeType
-     */
     public function setQueryTimeType($queryTimeType)
     {
         $this->queryTimeType = $queryTimeType;
         $this->apiParams['queryTimeType'] = $queryTimeType;
     }
 
-    /**
-     * @param mixed $scrollId
-     */
     public function setScrollId($scrollId)
     {
         $this->scrollId = $scrollId;

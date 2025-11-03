@@ -173,221 +173,143 @@ class ApiQueryCouponRequest extends AbstractRequest
      */
     private $apiParams = [];
 
-    /**
-     * @return mixed
-     */
     public function getLongitude()
     {
         return $this->longitude;
     }
 
-    /**
-     * @param mixed $longitude
-     */
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
         $this->apiParams['longitude'] = $longitude;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLatitude()
     {
         return $this->latitude;
     }
 
-    /**
-     * @param mixed $latitude
-     */
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
         $this->apiParams['latitude'] = $latitude;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPriceCap()
     {
         return $this->priceCap;
     }
 
-    /**
-     * @param mixed $priceCap
-     */
     public function setPriceCap($priceCap)
     {
         $this->priceCap = $priceCap;
         $this->apiParams['priceCap'] = $priceCap;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPriceFloor()
     {
         return $this->priceFloor;
     }
 
-    /**
-     * @param mixed $priceFloor
-     */
     public function setPriceFloor($priceFloor)
     {
         $this->priceFloor = $priceFloor;
         $this->apiParams['priceFloor'] = $priceFloor;
     }
 
-    /**
-     * @return mixed
-     */
     public function getVpSkuViewIds()
     {
         return $this->vpSkuViewIds;
     }
 
-    /**
-     * @param mixed $vpSkuViewIds
-     */
     public function setVpSkuViewIds($vpSkuViewIds)
     {
         $this->vpSkuViewIds = $vpSkuViewIds;
         $this->apiParams['vpSkuViewIds'] = $vpSkuViewIds;
     }
 
-    /**
-     * @return mixed
-     */
     public function getListTopiId()
     {
         return $this->listTopiId;
     }
 
-    /**
-     * @param mixed $listTopiId
-     */
     public function setListTopiId($listTopiId)
     {
         $this->listTopiId = $listTopiId;
         $this->apiParams['listTopiId'] = $listTopiId;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPageSize()
     {
         return $this->pageSize;
     }
 
-    /**
-     * @param mixed $pageSize
-     */
     public function setPageSize($pageSize)
     {
         $this->pageSize = $pageSize;
         $this->apiParams['pageSize'] = $pageSize;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPageNo()
     {
         return $this->pageNo;
     }
 
-    /**
-     * @param mixed $pageNo
-     */
     public function setPageNo($pageNo)
     {
         $this->pageNo = $pageNo;
         $this->apiParams['pageNo'] = $pageNo;
     }
 
-    /**
-     * @return mixed
-     */
     public function getSortField()
     {
         return $this->sortField;
     }
 
-    /**
-     * @param mixed $sortField
-     */
     public function setSortField($sortField)
     {
         $this->sortField = $sortField;
         $this->apiParams['sortField'] = $sortField;
     }
 
-    /**
-     * @return int
-     */
     public function getCommissionCap()
     {
         return $this->commissionCap;
     }
 
-    /**
-     * @param int $commissionCap
-     */
     public function setCommissionCap($commissionCap)
     {
         $this->commissionCap = $commissionCap;
         $this->apiParams['commissionCap'] = $commissionCap;
     }
 
-    /**
-     * @return int
-     */
     public function getCommissionFloor()
     {
         return $this->commissionFloor;
     }
 
-    /**
-     * @param int $commissionFloor
-     */
     public function setCommissionFloor($commissionFloor)
     {
         $this->commissionFloor = $commissionFloor;
         $this->apiParams['commissionFloor'] = $commissionFloor;
     }
 
-    /**
-     * @return int
-     */
     public function getPlatform()
     {
         return $this->platform;
     }
 
-    /**
-     * @param int $platform
-     */
     public function setPlatform($platform)
     {
         $this->platform = $platform;
         $this->apiParams['platform'] = $platform;
     }
 
-    /**
-     * @return int
-     */
     public function getBizLine()
     {
         return $this->bizLine;
     }
 
-    /**
-     * @param int $bizLine
-     */
     public function setBizLine($bizLine)
     {
         $this->bizLine = $bizLine;
