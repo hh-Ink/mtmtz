@@ -64,7 +64,13 @@ class ApiGetReferralLinkRequest extends AbstractRequest
     private $shareTextType;
 
     /**
-     * 活动链接.
+     * 单个转链链接
+     * 只支持到家（外卖商品券、医药）商品链接、到店（到店美食、休闲生活、酒店、门票）商品链接、活动物料链接。
+     *
+     * 活动链接，即想要推广的目标链接
+     * 出参会返回成自己可推的链接，限定为当前可推广的活动链接或者商品券链接，请求内容尽量保持在200字以内，
+     * 链接类型目前支持长链、短链、deeplink(唤起)链接、圈圈小程序唤起路径、美团小程序活动链接
+     *
      * @var string
      */
     private $text;
