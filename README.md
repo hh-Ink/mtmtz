@@ -1,5 +1,8 @@
 # 美团美天赚-sdk
 
+## V1 不在维护，请使用V2
+[不再维护原因](https://github.com/hh-Ink/mtmtz/issues/4)
+
 ## 说明
 提供了美团美天赚的接入鉴权封装及请求类的抽象
 
