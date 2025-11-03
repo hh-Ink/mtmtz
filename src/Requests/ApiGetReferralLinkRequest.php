@@ -76,6 +76,20 @@ class ApiGetReferralLinkRequest extends AbstractRequest
     private $text;
 
     /**
+     * 链接类型列表，(linkType和linkTypeList必传一个，linkType和linkTypeList都传时，只处理linkTypeList)。枚举值：1 H5长链接；2 H5短链接；3 deeplink(唤起)链接；4 微信小程序唤起路径；5 团口令；6 小程序码;注：团口令、h5短链、小程序二维码有效期60天 ，其余无限制
+     * 是否必须：否.
+     * @var array<int>
+     */
+    private $linkTypeList;
+
+    /**
+     * 批量转链链接。只支持到家（外卖商品券、医药）商品链接、到店（到店美食、休闲生活、酒店、门票）商品链接、活动物料链接。活动链接，即想要推广的目标链接，出参会返回成自己可推的链接，限定为当前可推广的活动链接或者商品券链接，请求内容尽量保持在200字以内，请求链接数量控制在20条以下, 链接类型目前支持长链、短链、deeplink(唤起)链接、圈圈小程序唤起路径、美团小程序活动链接
+     * 是否必须：否.
+     * @var array<string>
+     */
+    private $textList;
+
+    /**
      * 请求参数.
      */
     private $apiParams = [];
@@ -166,6 +180,28 @@ class ApiGetReferralLinkRequest extends AbstractRequest
     {
         $this->shareTextType = $shareTextType;
         $this->apiParams['shareTextType'] = $shareTextType;
+    }
+
+    public function setLinkTypeList($linkTypeList)
+    {
+        $this->linkTypeList = $linkTypeList;
+        $this->apiParams['linkTypeList'] = $linkTypeList;
+    }
+
+    public function getLinkTypeList(): array
+    {
+        return $this->linkTypeList;
+    }
+
+    public function setTextList($textList)
+    {
+        $this->textList = $textList;
+        $this->apiParams['textList'] = $textList;
+    }
+
+    public function getTextList(): array
+    {
+        return $this->textList;
     }
 
     public function getApiParams(): array
