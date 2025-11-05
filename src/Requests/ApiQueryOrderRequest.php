@@ -303,56 +303,56 @@ class ApiQueryOrderRequest extends AbstractRequest
         $this->apiParams['scrollId'] = $scrollId;
     }
 
-    public function getCategoryIds(): array
+    public function getCategoryIds()
     {
         return $this->categoryIds;
     }
 
-    public function setCategoryIds(array $categoryIds): void
+    public function setCategoryIds($categoryIds)
     {
         $this->categoryIds = $categoryIds;
         $this->apiParams['categoryIds'] = $categoryIds;
     }
 
-    public function getActId(): int
+    public function getActId()
     {
         return $this->actId;
     }
 
-    public function setActId(int $actId): void
+    public function setActId($actId)
     {
         $this->actId = $actId;
         $this->apiParams['actId'] = $actId;
     }
 
-    public function getTradeType(): int
+    public function getTradeType()
     {
         return $this->tradeType;
     }
 
-    public function setTradeType(int $tradeType): void
+    public function setTradeType($tradeType)
     {
         $this->tradeType = $tradeType;
         $this->apiParams['tradeType'] = $tradeType;
     }
 
-    public function getSearchType(): int
+    public function getSearchType()
     {
         return $this->searchType;
     }
 
-    public function setSearchType(int $searchType): void
+    public function setSearchType($searchType)
     {
         $this->searchType = $searchType;
         $this->apiParams['searchType'] = $searchType;
     }
 
-    public function getCityNames(): array
+    public function getCityNames()
     {
         return $this->cityNames;
     }
 
-    public function setCityNames(array $cityNames): void
+    public function setCityNames($cityNames)
     {
         $this->cityNames = $cityNames;
         $this->apiParams['cityNames'] = $cityNames;
