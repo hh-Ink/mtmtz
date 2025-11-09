@@ -56,3 +56,30 @@ class ToolMtMTZ
 
     > 重写抽象类 `Msmm\MtMtz\Requests\AbstractRequest` 的 `getResult` 方法即可
 3. 具体实现请参考 `Msmm\MtMtz\Requests\ApiQueryOrderRequest` 类
+
+## PR
+> 有api新增或参数新增或变化，欢迎提交PR
+
+#### PR编码规则如下：
+1. 命名规范
+   - 类名采用 UpperCamelCase 命名法，如 ApiQueryOrderRequest
+   - 属性名采用 lowerCamelCase 命名法，如 businessLine、startTime
+   - 方法名采用 lowerCamelCase 命名法，如 getSid()、setBusinessLine()
+2. 类结构组织
+   - 类继承自 AbstractRequest 基类
+   - 属性声明在类的开头，按照功能相关性分组排列
+   - 属性访问控制使用 private 修饰符
+   - getter/setter 方法成对出现，按属性顺序排列
+   - 核心业务方法放在类的最后，如 getApiParams() 和 getApiMethodName()
+3. 注释规范 
+   - 每个属性都有详细的 PHPDoc 注释，包含：
+   - 业务含义说明
+   - 是否必须标识
+   - 数据类型声明（@var 标签）
+   - 枚举值说明（适用时）
+   - 类级别有功能描述注释
+   - 复杂业务逻辑有详细说明
+4. 类型声明
+   - 严格模式声明：declare(strict_types=1)
+   - 属性类型要明确声明在注释里，是IED可识别
+   - 属性 set 和 get 方法入参和出参不可强制指定数据类型
