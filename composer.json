@@ -1,6 +1,7 @@
 {
     "name": "msmm/mtmtz",
     "type": "library",
+    "license": "MIT",
     "description": "美团 美天赚 基础封装",
     "autoload": {
         "psr-4": {
